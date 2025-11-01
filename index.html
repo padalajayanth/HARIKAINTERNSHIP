@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Responsive Image Gallery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="no-js-warning">JavaScript is required for navigation & lightbox. Please enable JS.</div>
+    <div class="header">
+      <h1>Responsive Image Gallery</h1>
+      <div class="info">Click any image to open lightbox — keyboard navigation supported</div>
+    </div>
+
+    <div class="toolbar">
+      <div class="filters" role="tablist" aria-label="Image categories">
+        <button class="filter-btn active" data-cat="all">All</button>
+        <button class="filter-btn" data-cat="nature">Nature</button>
+        <button class="filter-btn" data-cat="city">City</button>
+        <button class="filter-btn" data-cat="people">People</button>
+        <button class="filter-btn" data-cat="abstract">Abstract</button>
+        <button class="filter-btn" data-cat="custom">Custom</button>
+      </div>
+
+      <div class="filters-panel">
+        <label for="filter-blur">Blur</label>
+        <input id="filter-blur" class="range" type="range" min="0" max="8" step="0.1" value="0">
+        <label for="filter-sat">Saturation</label>
+        <input id="filter-sat" class="range" type="range" min="0" max="2" step="0.05" value="1">
+
+        <!-- Add image button -->
+        <button id="add-image-btn" class="add-btn">➕ Add Image</button>
+        <input type="file" id="image-input" accept="image/*" multiple hidden>
+      </div>
+    </div>
+
+    <div id="gallery" class="grid" aria-live="polite">
+      <template id="card-template">
+        <article class="card" tabindex="0">
+          <img class="thumb" loading="lazy" alt="Gallery image">
+          <div class="overlay">
+            <div class="meta">
+              <div class="title"></div>
+              <div class="cat"></div>
+            </div>
+          </div>
+        </article>
+      </template>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-content" role="dialog" aria-modal="true">
+      <div class="controls">
+        <button id="prev" class="btn" aria-label="Previous image">◀</button>
+        <button id="next" class="btn" aria-label="Next image">▶</button>
+      </div>
+      <button id="close" class="btn close" aria-label="Close">✕</button>
+      <img id="lightbox-img" class="lightbox-img" src="" alt=""/>
+      <div id="caption" class="caption"></div>
+    </div>
+  </div>
+
+  <!-- Upload Preview Modal -->
+  <div id="upload-modal" class="upload-modal hidden">
+    <div class="upload-box">
+      <img id="upload-preview" alt="preview">
+      <div class="upload-actions">
+        <button id="upload-save" class="add-btn">Save</button>
+        <button id="upload-cancel" class="btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
